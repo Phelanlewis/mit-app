@@ -39,7 +39,7 @@ app.post('/', function (req, res) {
 })
 
 app.get('/', function (req, res) {
-  res.send('hello world')
+  res.send('This is a message')
   console.log("BODY RESPONSE: " + JSON.stringify(req.body));
 })
 

@@ -48,15 +48,29 @@
 
   export default {
     name: 'SubmitMit',
-    props: {
-      didyesterday: String,
-      didyoumiss: String,
-      mostimportanttask: String,
-      comingupagainst: String,
-      fixit: String,
-      goodthing: String,
-      doingnext: String
+
+    // props: {
+    //   didyesterday: String,
+    //   didyoumiss: String,
+    //   mostimportanttask: String,
+    //   comingupagainst: String,
+    //   fixit: String,
+    //   goodthing: String,
+    //   doingnext: String
+    // },
+
+    data: function() {
+      return {
+        didyesterday: [],
+        didyoumiss: [],
+        mostimportanttask: [],
+        comingupagainst: [],
+        fixit: [],
+        goodthing: [],
+        doingnext: []
+      }
     },
+
     methods: {
       handleSubmit: function() {
 
@@ -80,7 +94,7 @@
         data: data
       })
       .then(function (response) {
-        console.log("THIS IS THE SUBMIT RESPONSE: " + response)
+        console.log("THIS IS THE SUBMIT RESPONSE: " + JSON.stringify(response))
       });
 
       // const response = fetch(url, {
