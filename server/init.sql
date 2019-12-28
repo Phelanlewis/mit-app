@@ -1,11 +1,12 @@
 CREATE TABLE mitresponses (
   ID SERIAL PRIMARY KEY,
-  users VARCHAR(255) NOT NULL,
-  didyesterday VARCHAR(255) NOT NULL,
-  didyoumiss VARCHAR(255) NOT NULL,
-  mostimportanttask VARCHAR(255) NOT NULL,
-  comingupagainst VARCHAR(255) NOT NULL,
-  fixit VARCHAR(255) NOT NULL,
-  goodthing VARCHAR(255) NOT NULL,
-  doingnext VARCHAR(255) NOT NULL,
+  date_col DATE,
+  users VARCHAR(255),
+  didyesterday TEXT,
+  didyoumiss TEXT,
+  mostimportanttask TEXT,
+  comingupagainst TEXT,
+  fixit TEXT,
+  goodthing TEXT,
+  doingnext TEXT
 );

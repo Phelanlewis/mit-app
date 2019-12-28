@@ -2,6 +2,11 @@
   <div>
     <form @submit.prevent="handleSubmit">
       <div>
+        <p>User Name?:</p>
+        <input v-model="users" placeholder="edit me"/>
+        <p style="white-space: pre-line;">{{ users }}</p>
+      </div>
+      <div>
         <p>What did you do yesterday?:</p>
         <textarea v-model="didyesterday" placeholder="edit me"></textarea>
         <p style="white-space: pre-line;">{{ didyesterday }}</p>
@@ -49,18 +54,9 @@
   export default {
     name: 'SubmitMit',
 
-    // props: {
-    //   didyesterday: String,
-    //   didyoumiss: String,
-    //   mostimportanttask: String,
-    //   comingupagainst: String,
-    //   fixit: String,
-    //   goodthing: String,
-    //   doingnext: String
-    // },
-
     data: function() {
       return {
+        users: [],
         didyesterday: [],
         didyoumiss: [],
         mostimportanttask: [],
@@ -74,45 +70,32 @@
     methods: {
       handleSubmit: function() {
 
-      let data = {
-        didyesterday: this.didyesterday,
-        didyoumiss: this.didyoumiss,
-        mostimportanttask: this.mostimportanttask,
-        comingupagainst: this.comingupagainst,
-        fixit: this.fixit,
-        goodthing: this.goodthing,
-        doingnext: this.doingnext
-      }
+        let now = new Date()
 
-      //console.log("I AM THE DATA: " + JSON.stringify(data));
+        let data = {
+          users: this.users,
+          date_col: now,
+          didyesterday: this.didyesterday,
+          didyoumiss: this.didyoumiss,
+          mostimportanttask: this.mostimportanttask,
+          comingupagainst: this.comingupagainst,
+          fixit: this.fixit,
+          goodthing: this.goodthing,
+          doingnext: this.doingnext
+        }
 
-      let url = "http://localhost:3002/";
+        let url = "http://localhost:3002/";
 
-      axios({
-        method: 'post',
-        url: url,
-        data: data
-      })
-      .then(function (response) {
-        console.log("THIS IS THE SUBMIT RESPONSE: " + JSON.stringify(response))
-      });
+        axios({
+          method: 'post',
+          url: url,
+          data: data
+        })
+        .then(function (response) {
+          let responseMessage = JSON.stringify(response)
+          console.log("THIS IS THE SUBMIT RESPONSE: " + responseMessage.data)
 
-      // const response = fetch(url, {
-      //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      //     mode: 'cors', // no-cors, *cors, same-origin
-      //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      //     credentials: 'same-origin', // include, *same-origin, omit
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //       // 'Content-Type': 'application/x-www-form-urlencoded',
-      //     },
-      //     redirect: 'follow', // manual, *follow, error
-      //     referrerPolicy: 'no-referrer', // no-referrer, *client
-      //     body: JSON.stringify(data)
-      //   }).then(function(response){
-      //     console.log("THIS IS THE SUBMIT RESPONSE: " + response)
-      //     //return JSON.stringify(response);
-      // })
+        });
       }
     }
   }
